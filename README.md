@@ -22,6 +22,11 @@ Install composer
 composer install
 ```
 
+Copy .env.example into the .env
+```
+cp .env.example .env
+```
+
 Install npm modules with `npm install` or `yarn install`
 
 Run webpack with `npm start` or `yarn start`
