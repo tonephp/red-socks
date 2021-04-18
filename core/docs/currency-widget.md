@@ -258,4 +258,4 @@ use app\widgets\currency\Currency;
 
 ## 7. FINAL. See how to use currency select
 
-To find how to use currency select follow this link - [README.md](../../README.md)
+To find how to use currency select follow this link - [README.md#currency-widget-usage](https://github.com/tonephp/tonephp/blob/main/README.md#currency-widget-usage)
