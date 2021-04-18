@@ -3,6 +3,7 @@
         <a href="/">Main Page</a>
     </div>
     <div class="header__cell">
+        <?php new \app\widgets\currency\Currency(); ?>
         <?php if ($this->isAuth()): ?>
             <span>Hello, <?=$this->getUser()['name']?></span>
             <a href="/user/logout">Logout</a>

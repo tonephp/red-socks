@@ -8,5 +8,8 @@
         TonePHP
       </div>
     </div>
+    <div>
+      <?=\app\widgets\currency\Currency::calculatePriceWithCurrency(100);?>
+    </div>
   </div>
 </div>
