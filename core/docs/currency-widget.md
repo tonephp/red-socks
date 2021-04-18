@@ -237,3 +237,25 @@ class CurrencyController extends AppController {
 }
 ```
 
+## 6. Save "currencies" and "currency" as Application Properties
+
+### -- Edit file `app/controllers/AppController.php`:
+
+Add this code into the constructor
+```php
+$currencies = Currency::getCurrencies();
+$currentCurrency = Currency::getCurrentCurrency($currencies);
+
+Tone::$app->setProperty('currencies', $currencies);
+Tone::$app->setProperty('currency', $currentCurrency);
+```
+
+Add this lines as imports after line "use core\base\Controller;"
+```php
+use core\Tone;
+use app\widgets\currency\Currency;
+```
+
+## 7. FINAL. See how to use currency select
+
+To find how to use currency select follow this link - [../../README.md](README.md)
