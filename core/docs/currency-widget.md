@@ -152,7 +152,7 @@ if (select) {
 
 ## 3. Import select's template script
 
-### -- Add this line into file `app/src/app.js`:
+### -- Add this line into the file `app/src/app.js`:
 
 ```js
 import '../widgets/currency/templates/select/select';
