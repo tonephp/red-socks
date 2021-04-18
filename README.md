@@ -1,6 +1,37 @@
 # Website made with TonePHP 👋
 
-## Login credentials
+# First Usage 🚀
+
+Clone repository
+```
+git clone https://github.com/tonephp/tonephp.git
+```
+
+Run docker container
+```
+docker-compose up -d
+```
+
+Install composer
+```
+composer install
+```
+
+Install npm modules with `npm install` or `yarn install`
+
+Run webpack with `npm start` or `yarn start`
+
+Import database from file `tonephp_db.sql` using phpmyadmin.
+- Open link `http://localhost:40002`
+- Login with this credentials
+```
+login - user
+password - password
+```
+
+FINAL. Follow this link `http://localhost:40001`
+
+## Website Login credentials
 
 ```
 login - admin
