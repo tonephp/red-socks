@@ -7,6 +7,11 @@ Clone repository
 git clone https://github.com/tonephp/tonephp.git
 ```
 
+Go to project folder
+```
+cd tonephp
+```
+
 Run docker container
 ```
 docker-compose up -d
