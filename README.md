@@ -30,7 +30,7 @@ Import database from file `tonephp_db.sql` using phpmyadmin.
 - Open link `http://localhost:40002`
 - Login with this credentials
 ```
-login - user
+username - user
 password - password
 ```
 
