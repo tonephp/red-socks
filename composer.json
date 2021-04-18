@@ -1,0 +1,13 @@
+{
+    "name": "tonephp/tonephp",
+    "require": {
+        "vlucas/valitron": "^1.4",
+        "vlucas/phpdotenv": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "core\\": "core",
+            "app\\": "app"
+        }
+    }
+}

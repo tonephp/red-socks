@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  justify-content: center;
+  padding: 50px 20px;
+
+  &__body {
+    max-width: 300px;
+  }
+
+  &__title {
+    padding-bottom: 20px;
+  }
+}

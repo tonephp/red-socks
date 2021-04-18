@@ -1,0 +1,46 @@
+version: "3.2"
+services:
+  php:
+    build:
+      context: .
+    image: author/tonephp:1.0.0
+    networks:
+      - frontend
+      - backend
+    environment:
+      - MYSQL_HOST=tonephp-mysql-app
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DB=tonephp_db
+    volumes:
+      - ./:/var/www/html/
+    ports:
+      - "40001:80"
+    container_name: tonephp-app
+  mysql:
+    image: mysql:5.7
+    networks:
+      - backend
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=tonephp_db
+    container_name: tonephp-mysql-app
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    ports:
+      - "40002:80"
+    environment:
+      - PMA_HOST=tonephp-mysql-app
+      - PMA_PORT=3306
+    volumes:
+      - /sessions
+    container_name: tonephp-phpmyadmin-app
+networks:
+  frontend:
+  backend:

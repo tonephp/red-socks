@@ -1,0 +1,21 @@
+.message {
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+
+  &__text {
+    padding: 10px;
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    &--errors {
+      background-color: rgb(175, 82, 82);
+    }
+    &--success {
+      background-color: #557e55;
+    }
+  }
+}
