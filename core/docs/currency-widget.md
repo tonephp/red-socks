@@ -1,5 +1,7 @@
 # Add currency widget
 
+See commit here - [Commit changes](https://github.com/tonephp/tonephp/commit/be424fd4164bd0690fa78e7ab9d1d4da0542d50f?branch=be424fd4164bd0690fa78e7ab9d1d4da0542d50f&diff=split)
+
 ## 1. Work with database table
 
 ### -- Create table
