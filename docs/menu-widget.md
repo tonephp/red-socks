@@ -1,6 +1,6 @@
 # Add menu widget
 
-See commit here - [Commit changes](https://github.com/tonephp/tonephp/commit/fd6b5523f691cb75df51d423d018fd1fe8599474)
+See commit here - [Commit changes](https://github.com/tonephp/tonephp/commit/784fe87880145c437f7cf3b326f7ce76349ce057)
 
 ## 1. Work with database table
 
