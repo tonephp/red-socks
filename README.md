@@ -73,3 +73,25 @@ Add this code after the div with class "hero__logo"
 ### How to create Currency widget
 
 * Create Currency widget - [currency-widget.md](core/docs/currency-widget.md)
+
+
+## Menu widget
+
+### Menu widget usage
+
+### -- Insert this code in the file `app/components/header/header.php`:
+
+Add this code after the first div with class "header__cell"
+```php
+<div class="header__cell">
+    <?php new \app\widgets\menu\Menu([
+        'tpl' => APP . '/widgets/menu/templates/menu/menu.php',
+        'container' => 'ul',
+    ]);?>
+</div>
+```
+
+
+### How to create Menu widget
+
+* Create Menu widget - [menu-widget.md](core/docs/menu-widget.md)
