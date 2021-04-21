@@ -147,3 +147,6 @@ function getAttrs($options) {
 }
 ```
 
+## 5. FINAL. See how to use menu widget
+
+To find how to use menu widget follow this link - [README.md#menu-widget-usage](https://github.com/tonephp/tonephp/blob/main/README.md#menu-widget-usage)
