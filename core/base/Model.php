@@ -93,6 +93,7 @@ class Model {
   }
 
   public function convertToAssoc($items, $itemKey = 'id', $saveKey = false) {
+    $itemKey = $itemKey ?? 'id';
     $assocItems = [];
     
     foreach ($items as $item) {
@@ -112,5 +113,21 @@ class Model {
     }
 
     return $assocItems;
+  }
+
+  public function getTree() {
+    $data = $this->findAll();
+    $data = $this->convertToAssoc($data, null, true);
+    $tree = [];
+
+    foreach ($data as $id => &$node) {
+      if (!$node['parent_id']) {
+        $tree[$id] = &$node;
+      } else {
+        $data[$node['parent_id']]['childs'][$id] = &$node;
+      }
+    }
+
+    return $tree;
   }
 }
