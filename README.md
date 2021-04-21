@@ -3,26 +3,31 @@
 # First Usage 🚀
 
 Clone repository
+
 ```
 git clone https://github.com/tonephp/tonephp.git
 ```
 
 Go to project folder
+
 ```
 cd tonephp
 ```
 
 Run docker container
+
 ```
 docker-compose up -d
 ```
 
 Install composer
+
 ```
 composer install
 ```
 
 Copy .env.example into the .env
+
 ```
 cp .env.example .env
 ```
@@ -32,8 +37,10 @@ Install npm modules with `npm install` or `yarn install`
 Run webpack with `npm start` or `yarn start`
 
 Import database from file `tonephp_db.sql` using phpmyadmin.
+
 - Open link `http://localhost:40002`
 - Login with this credentials
+
 ```
 username - user
 password - password
@@ -56,24 +63,25 @@ password - admin123
 
 ### -- Insert currency select in file `app/components/header/header.php`:
 
-Add this line into the div with class "header__cell"
+Add this line into the div with class "header\_\_cell"
+
 ```php
 <?php new \app\widgets\currency\Currency(); ?>
 ```
+
 ### -- Edit file `app/components/hero/hero.php`:
 
-Add this code after the div with class "hero__logo"
+Add this code after the div with class "hero\_\_logo"
+
 ```php
 <div>
   <?=\app\widgets\currency\Currency::calculatePriceWithCurrency(100);?>
 </div>
 ```
 
-
 ### How to create Currency widget
 
-* Create Currency widget - [currency-widget.md](core/docs/currency-widget.md)
-
+- Create Currency widget - [currency-widget.md](docs/currency-widget.md)
 
 ## Menu widget
 
@@ -81,7 +89,8 @@ Add this code after the div with class "hero__logo"
 
 ### -- Insert this code in the file `app/components/header/header.php`:
 
-Add this code after the first div with class "header__cell"
+Add this code after the first div with class "header\_\_cell"
+
 ```php
 <div class="header__cell">
     <?php new \app\widgets\menu\Menu([
@@ -91,7 +100,6 @@ Add this code after the first div with class "header__cell"
 </div>
 ```
 
-
 ### How to create Menu widget
 
-* Create Menu widget - [menu-widget.md](core/docs/menu-widget.md)
+- Create Menu widget - [menu-widget.md](docs/menu-widget.md)
