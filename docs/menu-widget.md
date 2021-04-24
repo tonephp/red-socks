@@ -60,7 +60,7 @@ class Menu extends Widget {
   }
 
   public function run() {
-    
+
     $m_category = new Category();
     $tree = $m_category->getTree();
 
@@ -124,29 +124,11 @@ namespace app\models;
 use core\base\Model;
 
 class Category extends Model {
-  
+
   public $table = 'category';
 }
 ```
 
-## 4. Add function
-
-### -- Add function into file `app/functions.php`
-
-```php
-function getAttrs($options) {
-  $attrs = '';
-  
-  if (!empty($options)) {
-    foreach ($options as $k => $v) {
-      $attrs .= " $k='$v'";
-    }
-  }
-
-  return $attrs;
-}
-```
-
-## 5. FINAL. See how to use menu widget
+## 4. FINAL. See how to use menu widget
 
 To find how to use menu widget follow this link - [README.md#menu-widget-usage](https://github.com/tonephp/tonephp/blob/main/README.md#menu-widget-usage)
