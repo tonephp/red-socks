@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-use core\base\View;
-
 class MainController extends AppController {
     
     public function indexAction() {
     
-       View::setMeta(
+       $this->setMeta(
            'TonePHP Framework',
            'TonePHP Framework',
            'TonePHP, framework'

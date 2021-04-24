@@ -27,10 +27,10 @@ class View {
 
   public function render($vars) {
 
-    $prefix = $this->route['prefix'];
-    $prefix = $prefix ? rtrim($prefix, '\\') . '/' : '';
+    $viewDir = $this->getViewDir();
 
-    $file_view = APP . "/pages/{$prefix}{$this->route['controller']}/{$this->view}.php";
+    $file_view = $viewDir . "{$this->view}.php";
+
     if (is_array($vars)) extract($vars);
     
     ob_start();
@@ -56,6 +56,18 @@ class View {
         throw new Exception("Layout $file_layout not found. URL: $url", self::$exceptionCode);
       }
     }
+  }
+
+  public function loadPart($name, $vars = []) {
+    $viewDir = $this->getViewDir();
+
+    $filePath = $viewDir. "{$this->view}-parts/{$name}.php";
+
+    ob_start();
+    extract($vars);
+    require $filePath;
+    
+    return ob_get_clean();
   }
 
   public static function getMeta() {
@@ -134,5 +146,13 @@ class View {
     require APP . "/{$file}.php";
     
     return ob_get_clean();
+  }
+
+  private function getViewDir() {
+    $prefix = $this->route['prefix'];
+    $prefix = $prefix ? rtrim($prefix, '\\') . '/' : '';
+    $viewDir = APP . "/pages/{$prefix}{$this->route['controller']}/";
+    
+    return $viewDir;
   }
 }

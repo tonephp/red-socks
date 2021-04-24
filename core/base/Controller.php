@@ -29,4 +29,12 @@ abstract class Controller {
   public function set($vars) {
     $this->vars = array_merge($this->vars, $vars);
   }
+
+  public function setMeta($title = '', $desc = '', $keywords = '') {
+    View::setMeta(
+      $title,
+      $desc,
+      $keywords
+    );
+  }
 }

@@ -8,7 +8,7 @@ class Cache {
     $content['data'] = $data;
     $content['key'] = $key;
     $content['end_time'] = time() + $seconds;
-    $fileName = CACHE . '/' . md5($key) . '.txt';
+    $fileName = $this->getFileName($key);
 
     if (file_put_contents($fileName, serialize($content))) {
       return true;
@@ -18,7 +18,7 @@ class Cache {
   }
 
   public function get($key) {
-    $fileName = CACHE . '/' . md5($key) . '.txt';
+    $fileName = $this->getFileName($key);
 
     if (file_exists($fileName)) {
       $content = unserialize(file_get_contents($fileName));
@@ -45,10 +45,14 @@ class Cache {
   }
 
   public function delete($key) {
-    $fileName = CACHE . '/' . md5($key) . '.txt';
+    $fileName = $this->getFileName($key);
 
     if (file_exists($fileName)) {
       unlink($fileName);
     }
+  }
+
+  protected function getFileName($key) {
+    return CACHE . '/' . md5($key) . '.txt';
   }
 }
