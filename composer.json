@@ -4,6 +4,17 @@
         "vlucas/valitron": "^1.4",
         "vlucas/phpdotenv": "^4.0"
     },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Andrii Pereverziev",
+            "email": "pereverziev.andrii@gmail.com",
+            "homepage": "https://www.tonephp.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0"
+    },
     "autoload": {
         "psr-4": {
             "core\\": "core",
