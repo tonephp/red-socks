@@ -9,5 +9,10 @@
             "core\\": "core",
             "app\\": "app"
         }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.9"
+        }
     }
 }
