@@ -1,9 +1,5 @@
 {
     "name": "tonephp/tonephp",
-    "require": {
-        "vlucas/valitron": "^1.4",
-        "vlucas/phpdotenv": "^4.0"
-    },
     "license": "BSD-3-Clause",
     "authors": [
         {
@@ -17,8 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "core\\": "core",
-            "app\\": "app"
+            "TonePHP\\": "core",
         }
     },
     "extra": {
