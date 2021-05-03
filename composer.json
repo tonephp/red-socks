@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "vlucas/phpdotenv": "^4.0"
+        "vlucas/phpdotenv": "^4.0",
+        "vlucas/valitron": "^1.4"
     },
     "autoload": {
         "psr-4": {
