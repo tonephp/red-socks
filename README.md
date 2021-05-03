@@ -5,7 +5,7 @@
 Clone repository
 
 ```
-git clone https://github.com/tonephp/tonephp.git
+git clone https://github.com/tonephp/starter-kit.git
 ```
 
 Go to project folder
