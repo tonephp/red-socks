@@ -23,4 +23,8 @@ class Tone {
         }
     }
   }
+
+  public static function requireFunctions() {
+    require __DIR__ . '/functions.php';
+  }
 }
