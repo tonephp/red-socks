@@ -51,6 +51,14 @@ function siteUrl() {
     return $protocol.$domainName;
 }
 
+function getViewDir($route) {
+    $prefix = $route['prefix'];
+    $prefix = $prefix ? rtrim($prefix, '\\') . '/' : '';
+    $viewDir = APP . "/pages/{$prefix}{$route['controller']}/";
+    
+    return $viewDir;
+}
+
 function getAttrs($options) {
     $attrs = '';
 

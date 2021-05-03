@@ -4,6 +4,8 @@ namespace core;
 
 class Cache {
   
+  use TSingletone;
+  
   public function set($key, $data, $seconds = 3600) {
     $content['data'] = $data;
     $content['key'] = $key;

@@ -26,11 +26,9 @@ class View {
   }
 
   public function render($vars) {
-
-    $viewDir = $this->getViewDir();
+    $viewDir = getViewDir($this->route);
 
     $file_view = $viewDir . "{$this->view}.php";
-
     if (is_array($vars)) extract($vars);
     
     ob_start();
@@ -58,18 +56,6 @@ class View {
     }
   }
 
-  public function loadPart($name, $vars = []) {
-    $viewDir = $this->getViewDir();
-
-    $filePath = $viewDir. "{$this->view}-parts/{$name}.php";
-
-    ob_start();
-    extract($vars);
-    require $filePath;
-    
-    return ob_get_clean();
-  }
-
   public static function getMeta() {
     echo '<title>' . self::$meta['title'] . '</title>
       <meta name="description" content="' . self::$meta['desc'] . '">
@@ -82,16 +68,24 @@ class View {
     self::$meta['keywords'] = $keywords;
   }
 
-  public static function loadView($name, $vars = []) {
+  public function loadView($name, $vars = []) {
     $filePath = APP . "/{$name}.php";
-
-    if (!is_file($filePath)) {
-      throw new Exception("View $name not found", 404);
-    }
 
     ob_start();
     extract($vars);
     require APP . "/{$name}.php";
+    
+    return ob_get_clean();
+  }
+
+  public function loadPart($name, $vars = []) {
+    $viewDir = getViewDir($this->route);
+
+    $filePath = $viewDir. "{$this->view}-parts/{$name}.php";
+
+    ob_start();
+    extract($vars);
+    require $filePath;
     
     return ob_get_clean();
   }
@@ -110,7 +104,7 @@ class View {
         $path .= $folder . '/';
       }
     }
-    
+
     $children = $vars['children'] ?? null;
 
     extract($vars);
@@ -146,13 +140,5 @@ class View {
     require APP . "/{$file}.php";
     
     return ob_get_clean();
-  }
-
-  private function getViewDir() {
-    $prefix = $this->route['prefix'];
-    $prefix = $prefix ? rtrim($prefix, '\\') . '/' : '';
-    $viewDir = APP . "/pages/{$prefix}{$this->route['controller']}/";
-    
-    return $viewDir;
   }
 }

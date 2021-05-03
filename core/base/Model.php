@@ -30,10 +30,10 @@ class Model {
     $table = $table ?? $this->table;
     $propetries = implode(", ", array_keys($this->attributes));
     $questions = preg_replace( '#[^,]+#', '?', $propetries);
-    
-    $sql = "INSERT INTO $table (" . $propetries . ") VALUES (" . $questions . ")";
-    $saved = $this->db->execute($sql, array_values($this->attributes));
 
+    $sql = "INSERT INTO `$table` (" . $propetries . ") VALUES (" . $questions . ")";
+    $saved = $this->db->execute($sql, array_values($this->attributes));
+    
     return $saved;
   }
 
@@ -93,8 +93,8 @@ class Model {
   }
 
   public function convertToAssoc($items, $itemKey = 'id', $saveKey = false) {
-    $itemKey = $itemKey ?? 'id';
     $assocItems = [];
+    $itemKey = $itemKey ?? 'id';
     
     foreach ($items as $item) {
       
@@ -115,19 +115,14 @@ class Model {
     return $assocItems;
   }
 
-  public function getTree() {
-    $data = $this->findAll();
-    $data = $this->convertToAssoc($data, null, true);
-    $tree = [];
-
-    foreach ($data as $id => &$node) {
-      if (!$node['parent_id']) {
-        $tree[$id] = &$node;
-      } else {
-        $data[$node['parent_id']]['childs'][$id] = &$node;
-      }
+  public function getSlotsFromArr($arr) {
+    $arrCount = count($arr);
+    $slots = [];
+    for ($i = 0; $i < $arrCount; $i++) {
+      $slots[] = '?';
     }
+    $slots = implode(',', $slots);
 
-    return $tree;
+    return $slots;
   }
 }
