@@ -11,7 +11,7 @@ git clone https://github.com/tonephp/starter-kit.git
 Go to project folder
 
 ```
-cd tonephp
+cd starter-kit
 ```
 
 Run docker container
