@@ -15,11 +15,10 @@ abstract class Controller {
   public function __construct($route) {
       $this->route = $route;
       $this->view = $route['action'];
-      $this->viewObj = new View($this->route, $this->layout, $this->view);
   }
 
   public function getView() {
-    $viewObj = $this->viewObj;
+    $viewObj = $this->viewObj = new View($this->route, $this->layout, $this->view);
     $viewObj->scripts = $this->scripts;
     $viewObj->render($this->vars);
   }
