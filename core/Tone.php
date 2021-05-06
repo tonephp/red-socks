@@ -24,6 +24,7 @@ class Tone {
     define('CORE', ROOT . '/core');
     define('CONFIG', ROOT . '/config');
     define('APP', ROOT . '/app');
+    define('WIDGETS', APP . '/widgets');
     define('CACHE', ROOT . '/tmp/cache');
     define('LAYOUT', 'default');
 
