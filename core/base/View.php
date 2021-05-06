@@ -68,7 +68,7 @@ class View {
     self::$meta['keywords'] = $keywords;
   }
 
-  public function loadView($name, $vars = []) {
+  public static function loadView($name, $vars = []) {
     $filePath = APP . "/{$name}.php";
 
     ob_start();
