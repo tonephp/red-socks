@@ -7,6 +7,7 @@ use Exception;
 class Router {
     protected static $routes = [];
     protected static $route = [];
+    protected static $url = '';
     protected static $controllerObj;
     protected static $exceptionCode = DEBUG ? 500 : 404;
 
@@ -15,14 +16,17 @@ class Router {
     }
 
     public static function dispatch($url) {
+        self::$url = $url;
         $url = self::removeQueryString($url);
-
+        
         if (self::matchRoute($url)) {
-
+            
             $controllerName = self::getControllerName();
             self::loadController($controllerName);
 
             if (self::$controllerObj) {
+                
+                
                 $actionName = self::getActionName();
                 self::callAction($actionName);
 
@@ -32,7 +36,7 @@ class Router {
                 unset($_SESSION['success']);
             }
         } else {
-            throw new Exception("Page not found. URL: $url", self::$exceptionCode);
+            self::handleCustomErrorPage("Page not found. URL: $url");
         }
     }
 
@@ -84,6 +88,13 @@ class Router {
         return $name;
     }
 
+    protected static function getErrorControllerName() {
+        $name = (self::$route['prefix'] ?? '') . 'ErrorController';
+        $name = 'app\controllers\\' . $name;
+
+        return $name;
+    }
+
     protected static function getActionName() {
         $name = self::$route['action'];
         $name = lowerCamelCase($name);
@@ -96,8 +107,7 @@ class Router {
         if (class_exists($name)) {
             self::$controllerObj = new $name(self::$route);
         } else {
-            $url = self::$route['url'];
-            throw new Exception("Controller $name not found. URL: $url", self::$exceptionCode);
+            self::handleCustomErrorPage("Controller $name not exists.");
         }
     }
 
@@ -105,8 +115,30 @@ class Router {
         if (method_exists(self::$controllerObj, $name)) {
             self::$controllerObj->$name();
         } else {
+            self::handleCustomErrorPage("Action $name not exists.");
+        }
+    }
+
+    protected static function handleCustomErrorPage($logMessage = 'Some error in handleCustomErrorPage') {
+        $errorControllerName = self::getErrorControllerName();
+
+        if (class_exists($errorControllerName)) {
+            self::$route['controller'] = 'Error';
+            self::$route['action'] = 'index';
+            self::$route['prefix'] = self::$route['prefix'] ?? '';
+            self::$route['url'] = self::$route['url'] ?? self::$url;
+        
+            self::$controllerObj = new $errorControllerName(self::$route);
+            $actionName = self::getActionName();
+            self::$controllerObj->$actionName();
+            self::$controllerObj->getView();
+
+            ErrorHandler::logError($logMessage, 'Router.php', '');
+
+            die;
+        } else {
             $url = self::$route['url'];
-            throw new Exception("Action $name not found. URL: $url", self::$exceptionCode);
+            throw new Exception("$logMessage. URL: $url", self::$exceptionCode);
         }
     }
 

@@ -19,13 +19,13 @@ class ErrorHandler {
   }
 
   public function errorHandler($no, $str, $file, $line) {
-    $this->logError($str, $file, $line);
+    self::logError($str, $file, $line);
     $this->displayError($no, $str, $file, $line);
 
     return true;
   }
 
-  public function logError($str, $file, $line) {
+  public static function logError($str, $file, $line) {
     error_log(
       "[" . date('Y-m-d H:i:s') . "] Error text: {$str} | File: {$file} | Line: {$line}\n", 
       3,
@@ -34,7 +34,7 @@ class ErrorHandler {
   }
 
   public function exceptionHandler($e) {
-    $this->logError($e->getMessage(), $e->getFile(), $e->getLine());
+    self::logError($e->getMessage(), $e->getFile(), $e->getLine());
     $this->displayError('Exception', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());
   }
 
@@ -46,7 +46,7 @@ class ErrorHandler {
       AND $error['type'] & ( E_ERROR | E_PARSE | E_COMPILE_ERROR | E_CORE_ERROR)
     ) {
       ob_end_clean();
-      $this->logError($error['message'], $error['file'], $error['line']);
+      self::logError($error['message'], $error['file'], $error['line']);
       $this->displayError($error['type'], $error['message'], $error['file'], $error['line']);
     } else {
       ob_end_flush();
@@ -62,13 +62,13 @@ class ErrorHandler {
     }
     
     if ($response == 404) {
-      require WWW . '/error/404.php';
+      require __DIR__ . '/error/404.php'; 
       die;
     }
     if (DEBUG) {
-      require WWW . '/error/dev.php';
+      require __DIR__ . '/error/dev.php';
     } else {
-      require WWW . '/error/prod.php';
+      require __DIR__ . '/error/prod.php';
     }
     die;
   }
