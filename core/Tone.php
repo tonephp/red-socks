@@ -15,6 +15,7 @@ class Tone {
     self::$app = Registry::instance();
     $this->getParams();
     new ErrorHandler;
+    self::addDefaultRoutes();
     self::dispatchRouter();
   }
 
@@ -36,6 +37,11 @@ class Tone {
     require __DIR__ . '/functions.php';
     require APP . '/functions.php';
     require APP . '/routes.php';
+  }
+  
+  protected static function addDefaultRoutes() {
+    Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
+    Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
   }
 
   protected static function dispatchRouter() {
