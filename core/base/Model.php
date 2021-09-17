@@ -38,7 +38,6 @@ class Model {
   }
 
   public function validate() {
-    V::lang('ru');
     $v = new V($this->attributes);
     $v->rules($this->rules);
 
