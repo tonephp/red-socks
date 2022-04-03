@@ -137,7 +137,7 @@ class Router {
 
             die;
         } else {
-            $url = self::$route['url'];
+            $url = isset(self::$route['url']) && self::$route['url'];
             throw new Exception("$logMessage. URL: $url", self::$exceptionCode);
         }
     }
