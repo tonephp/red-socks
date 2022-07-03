@@ -122,7 +122,7 @@ class Router {
     protected static function handleCustomErrorPage($logMessage = 'Some error in handleCustomErrorPage') {
         $errorControllerName = self::getErrorControllerName();
 
-        if (class_exists($errorControllerName)) {
+        if (!DEBUG && class_exists($errorControllerName)) {
             self::$route['controller'] = 'Error';
             self::$route['action'] = 'index';
             self::$route['prefix'] = self::$route['prefix'] ?? '';
