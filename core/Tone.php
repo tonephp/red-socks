@@ -45,7 +45,7 @@ class Tone {
   }
 
   protected static function dispatchRouter() {
-    $query = $_SERVER['QUERY_STRING'];
+    $query = $_SERVER['REQUEST_URI'];
     $query = rtrim($query, '/');
     Router::dispatch($query);
   }
