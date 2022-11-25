@@ -16,6 +16,7 @@ class Router {
     }
 
     public static function dispatch($url) {
+        $url = ltrim($url, '/');
         self::$url = $url;
         $url = self::removeQueryString($url);
         
